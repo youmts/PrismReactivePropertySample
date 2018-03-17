@@ -3,10 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:r="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.NET46"
         xmlns:local="clr-namespace:PrismReactivePropertySample"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <Window.DataContext>
+        <local:CalcuratorViewModel />
+    </Window.DataContext>
+    
+    <StackPanel>
+        <TextBox
+            Text="{Binding X.Value,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged,
+                ValidatesOnDataErrors=True}" />
+        <TextBox
+            Text="{Binding Y.Value,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged,
+                ValidatesOnDataErrors=True}" />
+        <Button Content="Sum" Height="30" Command="{Binding SendSum}"></Button>
+        <Slider Value="{Binding X.Value,
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged,
+                ValidatesOnDataErrors=True}"/>
+    </StackPanel>
 </Window>

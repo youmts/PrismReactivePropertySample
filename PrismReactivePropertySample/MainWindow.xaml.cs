@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Prism.Events;
 
 namespace PrismReactivePropertySample
 {
@@ -23,6 +24,10 @@ namespace PrismReactivePropertySample
         public MainWindow()
         {
             InitializeComponent();
+
+            Messenger.Instance
+                .GetEvent<PubSubEvent<double>>().Subscribe(
+                    d => MessageBox.Show(d.ToString()));
         }
     }
 }
